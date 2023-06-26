@@ -16,12 +16,12 @@ app.post('/sign-up', (req, res) => {
 app.post('/tweets', (req, res) => {
     if (usuarios == undefined) { res.send(401); } 
     else {
-        let usuario = usuarios.find(req.header.user);
-        if (usuario == undefined) {
+        let usuario = usuarios.indexOf(req.header.user);
+        if (usuario == -1) {
             res.send(401);
         }
         else {
-            tweets.push({ username: req.header.user, avatar: usuario.avatar, tweet: req.body.tweet });
+            tweets.push({ username: req.header.user, avatar: usuarios[usuario].avatar, tweet: req.body.tweet });
             res.send(200)
         }
     }
