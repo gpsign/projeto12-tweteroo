@@ -14,6 +14,7 @@ app.post('/sign-up', (req, res) => {
 });
 
 app.post('/tweets', (req, res) => {
+    if (usuarios == undefined) { res.send(401); }
     let usuario = usuarios.find(req.header.user);
     if (usuario == undefined) {
         res.send(401);
