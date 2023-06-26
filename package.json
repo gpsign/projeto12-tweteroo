@@ -2,12 +2,15 @@
   "name": "projeto12-tweteroo",
   "type": "module",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "./src/app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./src/app.js"
   },
   "author": "",
   "license": "ISC",
   "keywords": [],
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "@types/express": "^4.17.17"
+  }
 }
