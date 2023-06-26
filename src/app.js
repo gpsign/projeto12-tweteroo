@@ -14,16 +14,21 @@ app.post('/sign-up', (req, res) => {
 });
 
 app.post('/tweets', (req, res) => {
-    if (usuarios == undefined) { res.send(401); } 
+
+    console.log(req.body);
+
+    let usuario = -1;
+    for (let i = 0; i < usuarios.length; i++) {
+        if (usuarios[i].username == req.body.username) { usuario = i; }
+        console.log(usuarios[i].username);
+    }
+
+    if (usuario == -1) {
+        res.send(401);
+    }
     else {
-        let usuario = usuarios.indexOf(req.headers.user);
-        if (usuario == -1) {
-            res.send(401);
-        }
-        else {
-            tweets.push({ username: req.headers.user, avatar: usuarios[usuario].avatar, tweet: req.body.tweet });
-            res.send(200)
-        }
+        tweets.push({ username: req.body.username, avatar: usuarios[usuario].avatar, tweet: req.body.tweet });
+        res.send(200)
     }
 });
 
