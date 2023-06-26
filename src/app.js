@@ -14,14 +14,16 @@ app.post('/sign-up', (req, res) => {
 });
 
 app.post('/tweets', (req, res) => {
-    if (usuarios == undefined) { res.send(401); }
-    let usuario = usuarios.find(req.header.user);
-    if (usuario == undefined) {
-        res.send(401);
-    }
+    if (usuarios == undefined) { res.send(401); } 
     else {
-        tweets.push({ username: req.header.user, avatar: usuario.avatar, tweet: req.body.tweet });
-        res.send(200)
+        let usuario = usuarios.find(req.header.user);
+        if (usuario == undefined) {
+            res.send(401);
+        }
+        else {
+            tweets.push({ username: req.header.user, avatar: usuario.avatar, tweet: req.body.tweet });
+            res.send(200)
+        }
     }
 });
 
